@@ -1,0 +1,13 @@
+
+.image-list {
+  overflow: hidden;
+  border-right: 1px solid;
+  float: left;
+}
+
+.image {
+  width: (320px * .67);
+  height: (180px * .67);
+  background: #ededed;
+  border: 3px solid #ccc;
+}

@@ -4,7 +4,7 @@ var BigBird = require('bigbird');
 import ImageCollection from './components/image-collection/collection';
 
 // BigBird Initializer
-let Application = new BigBird.Initializer({
+var Application = new BigBird.Initializer({
   modules: {
     common: {
       initialize: function initializeAction() {
@@ -16,7 +16,7 @@ let Application = new BigBird.Initializer({
         console.log('pages#index');
 
         React.render(
-          <ImageCollection url="/collection.json" />,
+          <ImageCollection url="/images.json" />,
           document.getElementById('imageCollection')
         );
       }

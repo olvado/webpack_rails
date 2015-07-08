@@ -1,15 +1,17 @@
-var React = require('react');
-var $ = require('jquery');
+import React from 'react';
+import classNames from 'classnames';
+
 
 class Image extends React.Component {
 
   render() {
-    const { props } = this;
+    const { data } = this.props;
 
     return (
-      <figure className="image" onClick={ this.props.handleClick.bind(this) } >
+      <figure className="image">
+        { data.src }
         <figcaption>
-          { props.name }
+          { data.name }
         </figcaption>
       </figure>
     );

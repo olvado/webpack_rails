@@ -1,13 +1,25 @@
 
-.image-list {
+@import "bourbon";
+
+.image-list-container {
+  @include display(flex);
+  @include flex-direction(row);
+  @include justify-content(flex-start);
+}
+
+.image-list { 
   overflow: hidden;
-  border-right: 1px solid;
-  float: left;
+  background: #ccc;
+  display: inline-block;
+  min-width: 250px;
+  min-height: 80%;
+  margin: 0.5rem;
 }
 
 .image {
   width: (320px * .67);
   height: (180px * .67);
   background: #ededed;
-  border: 3px solid #ccc;
+  border: 3px solid #999;
+  margin: 1rem;
 }

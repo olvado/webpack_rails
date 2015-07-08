@@ -1,32 +1,24 @@
 var React = require('react');
 var $ = require('jquery');
 
-var CollectionTitle = require('./title');
-var ImageList = require('./image-list');
+var SelectedImages = require('./image-list');
+var SelectableImages = require('./image-list');
 
 class ImageCollection extends React.Component {
 
-  static propTypes = {
-    url: React.PropTypes.string
-  }
-
   state = {
-    data: {},
-    collection_name: "",
-    collection_images: [],
-    images: []
+    title: "Collection",
+    selectedImages: [],
+    selectableImages: []
   };
 
-  loadDataFromServer() {
+  getData() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
       cache: false,
       success: function(data) {
-        this.setState({ data: data });
-        this.setState({ collection_name: data.collection.name });
-        this.setState({ collection_images: data.collection.images });
-        this.setState({ images: data.images });
+        this.handleData(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -34,40 +26,35 @@ class ImageCollection extends React.Component {
     });
   }
 
-  sendDataToServer() {
-    console.log('Send data to the server');
+  handleData(data) {
+    const selectedImages = data.filter(function(image) {
+      return image.selected == true
+    });
+    const selectableImages = data.filter(function(image) {
+      return image.selected == false
+    });
+    this.setState({selectedImages: selectedImages});
+    this.setState({selectableImages: selectableImages});
+  }
+
+  markSelected() {
+
   }
 
   componentDidMount() {
-    this.loadDataFromServer();
-  }
-
-  handleImageClick(e) {
-    console.log(e);
-  }
-
-  handleButtonClick(e) {
-    console.log(e);
-    this.sendDataToServer();
-  }
-
-  handleDeleteClick() {
-    console.log(this);
-    this.setState({collection_images: this.state.images})
+    this.getData();
   }
 
   render() {
-    const { data } = this.state
+    const { title } = this.state;
 
     return (
       <div className="image-collection">
-        <CollectionTitle name={ this.state.collection_name } />
-        <button onClick={ this.handleButtonClick.bind(this) }>Click me</button>
+        <h1>Images for { title }</h1>
         <div className="image-list-container">
-          <ImageList images={ this.state.collection_images } data={data} className="image-list--collection" handleImageClick={this.handleImageClick.bind(this)} />
-          <ImageList images={ this.state.images } data={data} className="image-list--images" handleImageClick={this.handleImageClick.bind(this)} />
+          <SelectedImages images={ this.state.selectedImages } />
+          <SelectableImages images={ this.state.selectableImages } data={ this.state.selectedImages } { ...this.state } />
         </div>
-        <button onClick={ this.handleDeleteClick.bind(this) }>Delete</button>
       </div>
     );
   }

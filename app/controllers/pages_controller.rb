@@ -3,22 +3,15 @@ class PagesController < ApplicationController
   def index
   end
 
-  def collection
+  def images
     @images = []
     12.times do |i|
-      @images << {id: i, name: "Image #{i}", src: "image#{i}.jpg"}
+      @images << {id: i, name: "Image #{i}", src: "image#{i}.jpg", selected: false}
     end
-    @collection_images = @images.shuffle[0..4]
-    json = {
-      collection: {
-        id: 1,
-        name: "My collection",
-        images: @collection_images
-      }
-    }
-    json[:images] = @images
+    @images.shuffle[0..4].map{ |i| i[:selected] = true }
+
     respond_to do |format|
-      format.json { render json: json}
+      format.json { render json: @images}
     end
   end
 

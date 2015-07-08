@@ -1,18 +1,17 @@
-var React = require('react');
-var Image = require('./image');
+import React from 'react';
+import Image from './image';
 
 import classNames from 'classnames';
 
 class ImageList extends React.Component {
 
   render() {
-    const { images } = this.props;
-    const handleClick = this.props.handleImageClick;
+    const { selectedImages, images } = this.props;
     const classnames = classNames("image-list", this.props.className);
 
     let imageNodes = images.map(function(image, index) {
       return (
-        <Image name={image.name} key={index} handleClick={handleClick} />
+        <Image data={image} key={index} />
       );
     });
 

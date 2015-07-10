@@ -1,8 +1,8 @@
-var React = require('react');
-var $ = require('jquery');
+import $ from 'jquery';
+import React from 'react';
 
-var SelectedImages = require('./image-list');
-var SelectableImages = require('./image-list');
+import SelectedImages from './image-list';
+import SelectableImages from './image-list';
 
 class ImageCollection extends React.Component {
 

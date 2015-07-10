@@ -23,7 +23,8 @@
     "react-router": "^0.13.3",
     "node-libs-browser": "^0.5.2",
     "webpack": "^1.10.1",
-    "webpack-config-merger": "0.0.3"
+    "webpack-config-merger": "0.0.3",
+    "flux": "^2.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^3.0.1",

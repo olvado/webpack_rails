@@ -9,9 +9,9 @@ class ImageList extends React.Component {
     const { selectedImages, images } = this.props;
     const classnames = classNames("image-list", this.props.className);
 
-    let imageNodes = images.map(function(image, index) {
+    let imageNodes = images.map((image, index) => {
       return (
-        <Image data={image} key={index} />
+        <Image image={image} key={index} />
       );
     });
 

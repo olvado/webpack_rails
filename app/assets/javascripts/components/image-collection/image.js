@@ -1,18 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-
 class Image extends React.Component {
-
   render() {
-    const { data } = this.props;
-
+    const { image } = this.props;
     return (
       <figure className="image">
-        { data.src }
-        <figcaption>
-          { data.name }
-        </figcaption>
+        { image.src }
+        <figcaption>{ image.name }</figcaption>
       </figure>
     );
   }

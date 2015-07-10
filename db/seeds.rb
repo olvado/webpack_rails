@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+collection = Collection.create!(title: "Kittens")
+images = []
+12.times do |n|
+  images << Image.create!(title: "Image n", file: "480/270")
+end
+
+collection.images << images.shuffle[0..4]
+
+collection.save!

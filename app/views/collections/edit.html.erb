@@ -1,6 +1,15 @@
-<h1>Editing Collection</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @collection %> |
-<%= link_to 'Back', collections_path %>
+<article class="page collection">
+  <header class="page__header">
+    <h1 class="page__title">Editing <%= @collection %></h1>
+  </header>
+  <div class="page__content">
+    <section class="admin-form">
+      <%= render 'form' %>
+    </section>
+    <%= content_tag :section, "", id: "manageItems", class: "manage-items",
+                    data: {
+                      collectionUrl: collection_path(@collection, format: :json),
+                      imagesUrl: images_path(format: :json),
+                    } %>
+  </section>
+</article>

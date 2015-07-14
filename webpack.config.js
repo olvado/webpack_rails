@@ -35,6 +35,7 @@ module.exports = {
 
     preLoaders: [{
       test: /\.js$/,
+      loader: 'eslint-loader',
       include: path.join(__dirname, 'src')
     }],
     loaders: [{

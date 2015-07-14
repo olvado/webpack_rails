@@ -22,4 +22,14 @@
   background: #ededed;
   border: 3px solid #999;
   margin: 1rem;
+  overflow: hidden;
+  position: relative;
+  img {
+    width: 100%;
+  }
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+  }
 }

@@ -1,26 +1,27 @@
-var React = require('react');
-var BigBird = require('bigbird');
+import React from 'react';
+import BigBird from 'bigbird';
 
-import ImageCollection from './components/image-collection/collection';
+import Collection from './components/collection/collection';
 
 // BigBird Initializer
 var Application = new BigBird.Initializer({
   modules: {
     common: {
-      initialize: function initializeAction() {
+      initialize: () => {
         console.log('initialize');
       }
     },
-    pages: {
-      index: function() {
-        console.log('pages#index');
+    collections: {
+      edit: () => {
+        var container = document.getElementById('manageItems'),
+            collectionUrl = container.dataset.collectionurl,
+            imagesUrl = container.dataset.imagesurl;
 
         React.render(
-          <ImageCollection url="/images.json" />,
-          document.getElementById('imageCollection')
+          <Collection collectionUrl={ collectionUrl } imagesUrl={ imagesUrl } />,
+          container
         );
       }
     }
   }
 });
-

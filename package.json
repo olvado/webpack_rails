@@ -11,6 +11,9 @@
     "babel-loader": "^5.0.0",
     "babel-runtime": "^5.1.10",
     "classnames": "^1.2.1",
+    "events": "^1.0.2",
+    "flux": "^2.0.3",
+    "keymirror": "^0.1.1",
     "underscore": "*",
     "jquery": "^2.1.4",
     "bigbird": "https://github.com/olvado/bigbird/tarball/v0.3.6.1",
@@ -24,7 +27,10 @@
     "node-libs-browser": "^0.5.2",
     "webpack": "^1.10.1",
     "webpack-config-merger": "0.0.3",
-    "flux": "^2.0.3"
+    "alt": "^0.17.1",
+    "superagent": "^1.2.0",
+    "isomorphic-fetch": "^2.1.0",
+    "url": "^0.10.3"
   },
   "devDependencies": {
     "babel-eslint": "^3.0.1",
@@ -33,7 +39,7 @@
     "eslint-plugin-react": "^2.1.1"
   },
   "scripts": {
-    "webpack": "webpack --config webpack.config.js --watch --verbose",
-    "start": "npm run webpack & rails s"
+    "dev": "webpack --config webpack.config.js --watch --verbose",
+    "start": "npm run dev & rails s"
   }
 }

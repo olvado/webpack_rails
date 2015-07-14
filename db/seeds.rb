@@ -8,8 +8,9 @@
 
 collection = Collection.create!(title: "Kittens")
 images = []
+
 12.times do |n|
-  images << Image.create!(title: "Image n", file: "480/270")
+  images << Image.create!(title: "Image #{n}", file: "320x180/#{SecureRandom.hex(3)}")
 end
 
 collection.images << images.shuffle[0..4]

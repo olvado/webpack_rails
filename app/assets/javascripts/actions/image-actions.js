@@ -1,21 +1,25 @@
 import alt from '../alt';
-import { getImageList } from '../utils/image-utils';
+import { getImages, updateImages } from '../utils/image-utils';
 
 class ImageActions {
 
   constructor() {
     this.generateActions(
       'receiveImages',
-      'getImage'
+      'unselectImage',
+      'selectImage',
+      'commitChanges',
+      'getSelectedImages',
+      'updatePosition'
     );
   }
 
-  getImage(image) {
-    ImageActions.getImage(image);
+  getImages(imagesUrl) {
+    getImages(imagesUrl);
   }
 
-  getImageList() {
-    getImageList();
+  updateImages(updateUrl, images) {
+    updateImages(updateUrl, images);
   }
 
 }

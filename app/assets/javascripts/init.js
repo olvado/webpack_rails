@@ -3,7 +3,17 @@ import BigBird from 'bigbird';
 
 import Collection from './components/collection/collection';
 
-// BigBird Initializer
+
+(function() {
+  var send = XMLHttpRequest.prototype.send,
+      token = document.querySelector('meta[name="csrf-token"]').attributes.content.nodeValue;
+  XMLHttpRequest.prototype.send = function(data) {
+    this.setRequestHeader('X-CSRF-Token', token);
+    return send.apply(this, arguments);
+  };
+}());
+
+// Bird Initializer
 var Application = new BigBird.Initializer({
   modules: {
     common: {
@@ -14,11 +24,12 @@ var Application = new BigBird.Initializer({
     collections: {
       edit: () => {
         var container = document.getElementById('manageItems'),
-            collectionUrl = container.dataset.collectionurl,
-            imagesUrl = container.dataset.imagesurl;
+            collectionId = container.dataset.collectionid,
+            imagesUrl = container.dataset.imagesurl,
+            updateUrl = container.dataset.updateurl
 
         React.render(
-          <Collection collectionUrl={ collectionUrl } imagesUrl={ imagesUrl } />,
+          <Collection collectionId={ collectionId } imagesUrl={ imagesUrl } updateUrl={ updateUrl } />,
           container
         );
       }

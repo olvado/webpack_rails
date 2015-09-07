@@ -8,8 +8,9 @@
     </section>
     <%= content_tag :section, "", id: "manageItems", class: "manage-items",
                     data: {
-                      collectionUrl: collection_path(@collection, format: :json),
-                      imagesUrl: images_path(format: :json),
+                      updateUrl: collection_update_images_path(collection_id: @collection.id),
+                      collectionId: @collection.id,
+                      imagesUrl: collection_images_path(collection_id: @collection.id, format: :json),
                     } %>
   </section>
 </article>

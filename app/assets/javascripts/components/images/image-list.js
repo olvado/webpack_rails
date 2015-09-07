@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 
 import ImageActions from '../../actions/image-actions';
-import CollectionActions from '../../actions/collection-actions';
 
 import Image from './image';
 
@@ -10,29 +9,33 @@ class ImageList extends React.Component {
 
   static propTypes = {
     handleImageClick: React.PropTypes.func,
-    collection: React.PropTypes.object
+    images: React.PropTypes.array,
+    handlePosition: React.PropTypes.bool
   }
 
-  handleImageClick(image, event) {
-    // ImageActions.getImage(image);
-    CollectionActions.addImage(image);
-  }
+  handlePositionClick(newPosition) {
+    console.log(newPosition);
 
+  }
 
   render() {
-    let { images } = this.props;
-    let { image } = this.props;
+    let { images, handlePosition } = this.props;
     const classnames = classNames("image-list", this.props.className);
-
-    let imageNodes = images.map((image, index) => {
-      return (
-        <Image image={image} key={index} handleImageClick={ this.handleImageClick.bind(this, image) } />
-      );
-    });
-
     return (
       <div className={ classnames }>
-        {imageNodes}
+        { images &&
+          (images.map((image, index) => {
+              return (
+                <Image 
+                  image={image} 
+                  key={index} 
+                  handleImageClick={ this.props.handleImageClick.bind(this, image) } 
+                  handlePosition={ handlePosition } 
+                  position={index}
+                  handlePositionClick={ this.handlePositionClick.bind(this, index) } />
+              );
+            }))
+        }
       </div>
     );
   }

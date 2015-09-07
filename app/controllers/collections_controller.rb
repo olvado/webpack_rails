@@ -61,6 +61,25 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def images
+    @collection = Collection.find(params[:collection_id])
+    @selected_images = @collection.images
+    @images = Image.all
+    @selectable_images = @images - @selected_images
+  end
+
+  def update_images
+    @collection = Collection.find(params[:collection_id])
+    @images = params[:_json].map{|i| Image.find(i) }
+    @collection.collection_images.destroy_all
+    @collection.images << @images
+    p CollectionImage.all
+    puts "#{@images} >>>> #{@collection.images.map(&:title)}"
+    render json: {message: "YAH!"}
+    
+    # puts params
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection

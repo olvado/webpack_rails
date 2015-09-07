@@ -30,7 +30,8 @@
     "alt": "^0.17.1",
     "superagent": "^1.2.0",
     "isomorphic-fetch": "^2.1.0",
-    "url": "^0.10.3"
+    "url": "^0.10.3",
+    "es6-promise": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^3.0.1",
@@ -39,7 +40,10 @@
     "eslint-plugin-react": "^2.1.1"
   },
   "scripts": {
-    "dev": "webpack --config webpack.config.js --watch --verbose",
+    "dev": "webpack --config webpack.config.js --watch",
     "start": "npm run dev & rails s"
   }
 }
+
+
+

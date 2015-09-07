@@ -10,7 +10,7 @@ module.exports = {
   // 'context' sets the directory where webpack looks for module files you list in
   // your 'require' statements
   // context: __dirname + '/app/assets/javascripts',
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   // 'entry' specifies the entry point, where webpack starts reading all
   // dependencies listed and bundling them into the output file.
   // The entrypoint can be anywhere and named anything - here we are calling it

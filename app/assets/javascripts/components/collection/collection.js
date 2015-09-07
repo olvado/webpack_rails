@@ -1,48 +1,66 @@
 import React from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 
-import CollectionStore from '../../stores/collection-store.js';
-import CollectionActions from '../../actions/collection-actions.js';
+import ImageStore from '../../stores/image-store.js';
+import ImageActions from '../../actions/image-actions.js';
 
-import Images from '../images/images';
 import ImageList from '../images/image-list';
-
 
 @connectToStores
 class Collection extends React.Component {
 
   static propTypes = {
-    collection: React.PropTypes.object
+    updateUrl: React.PropTypes.string,
+    collectionId: React.PropTypes.string,
+    imagesUrl: React.PropTypes.string,
+    selectedImages: React.PropTypes.array,
+    selectableImages: React.PropTypes.array
   }
 
   static getStores() {
-    return [CollectionStore];
+    return [ImageStore];
   }
 
   static getPropsFromStores() {
-    return CollectionStore.getState();
+    return ImageStore.getState();
   }
 
   static getInitialState() {
-    return CollectionStore.getState();
+    return ImageStore.getState();
   }
 
   constructor(props) {
     super(props);
-    CollectionActions.getCollection(this.props.collectionUrl);
+    ImageActions.getImages(props.imagesUrl);
+  }
+
+  handleSelectedClick(image) {
+    ImageActions.unselectImage(image);
+  }
+
+  handleSelectableClick(image) {
+    ImageActions.selectImage(image);
+  }
+
+  handleSave(e) {
+    e.preventDefault();
+    ImageActions.updateImages(this.props.updateUrl, this.props.selectedImages);
   }
 
   render() {
-    let { collection } = this.props;
-
+    let { selectedImages, selectableImages } = this.props;
     return (
-      <div className="image-collection">
-        <h1>Images for {collection.title}</h1>
+      <div className="collection-images">
+        <h1>Images</h1>
+        <button onClick={ this.handleSave.bind(this) }>Save Changes</button>
         <div className="image-list-container">
-          { collection.images && (
-            <ImageList images={ collection.images }  />
-          )}
-          <Images collection={ collection } />
+          <ImageList 
+            images={ selectedImages } 
+            handleImageClick={ this.handleSelectedClick.bind(this) } 
+            handlePosition={ true } />
+          <ImageList 
+            images={ selectableImages } 
+            handleImageClick={ this.handleSelectableClick.bind(this) } />
         </div>
       </div>
     );

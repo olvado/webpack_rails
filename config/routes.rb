@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :collection_images
   resources :images
   resources :collections do
-    get 'edit-images'
+    get 'images'
+    post 'update-images'
   end
   root to: "collections#index"
 
